@@ -1,5 +1,5 @@
 import { ROUTE_PATH, ROUTE_NAMES, type RouteKey } from '@/shared/config';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 
 export default function Header() {
   const links = (Object.keys(ROUTE_PATH) as RouteKey[]).map(key => ({
@@ -11,9 +11,9 @@ export default function Header() {
   return (
     <nav>
       {links.map(val => (
-        <Link to={val.to} key={val.key}>
+        <NavLink to={val.to} key={val.key}>
           {val.label}
-        </Link>
+        </NavLink>
       ))}
     </nav>
   );

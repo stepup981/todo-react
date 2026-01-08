@@ -1,4 +1,4 @@
 export const ROUTE_NAMES = {
   HOME: 'Домашняя',
-  TODO: 'Отдельная Тодо',
+  POST: 'Отдельный пост',
 } as const

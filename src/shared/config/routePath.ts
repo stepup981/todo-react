@@ -1,7 +1,6 @@
 export const ROUTE_PATH = {
   HOME: '/',
-  TODO: '/todo',
-} as const
+  POST: '/post',
+} as const;
 
-export type RouteKey = keyof typeof ROUTE_PATH
-
+export type RouteKey = keyof typeof ROUTE_PATH;
