@@ -1,8 +1,8 @@
-import { ROUTE_PATH } from '@/shared/config';
 import { createBrowserRouter } from 'react-router-dom';
-import App from '@/app/App';
-import Home from '@/pages/home';
+import App from '~/app/App';
 import { PostPageLazy } from './lazyLoaders';
+import Home from '~/pages/home';
+import { ROUTE_PATH } from '~/shared/config';
 
 export const router = createBrowserRouter([
   {

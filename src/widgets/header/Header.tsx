@@ -1,4 +1,4 @@
-import { ROUTE_PATH, ROUTE_NAMES, type RouteKey } from '@/shared/config';
+import { ROUTE_PATH, ROUTE_NAMES, type RouteKey } from '~/shared/config';
 import { NavLink } from 'react-router-dom';
 
 export default function Header() {

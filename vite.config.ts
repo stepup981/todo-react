@@ -8,6 +8,6 @@ const atAlias = path.resolve(__dirname, './src');
 export default defineConfig({
   plugins: [react()],
   resolve: {
-    alias: { '@': atAlias },
+    alias: { '~': atAlias },
   },
 });
