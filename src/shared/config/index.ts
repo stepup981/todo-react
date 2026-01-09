@@ -1,2 +1,1 @@
-export * from './routePath';
-export * from './routeNames';
+export * from './routes';
