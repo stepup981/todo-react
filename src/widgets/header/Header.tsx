@@ -3,15 +3,15 @@ import { NavLink } from 'react-router-dom';
 import { ROUTES } from '~/shared/config';
 
 const Header = () => {
-  return (
-    <nav>
-      {Object.entries(ROUTES).map(([key, route]) => (
-        <NavLink to={route.path} key={key}>
-          {route.label}
-        </NavLink>
-      ))}
-    </nav>
-  );
+  const links = Object.entries(ROUTES).map(([key, route]) => {
+    return (
+      <NavLink key={key} to={route.path}>
+        {route.label}
+      </NavLink>
+    );
+  });
+
+  return <nav>{links}</nav>;
 };
 
 export default Header;
