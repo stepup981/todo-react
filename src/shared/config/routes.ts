@@ -3,8 +3,8 @@ export const ROUTES = {
     path: '/',
     label: 'Домашняя',
   },
-  POST: {
-    path: '/post',
-    label: 'Отдельный пост',
+  TODO: {
+    path: '/todo',
+    label: 'Отдельный тодо',
   },
 } as const;

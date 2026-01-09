@@ -1,1 +1,1 @@
-export const PostPageLazy = () => import('~/pages/post').then(({ default: Component }) => ({ Component }));
+export const TodoPageLazy = () => import('~/pages/todo').then(({ default: Component }) => ({ Component }));
