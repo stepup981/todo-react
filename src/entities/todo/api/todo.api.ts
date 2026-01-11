@@ -1,28 +1,28 @@
 import type { IApiTodo } from '~/entities/todo/api/todo.interfaces';
-import { type Todo } from '~/entities/todo/model/types';
+import { type ITodo } from '~/entities/todo/model';
 
-import { ApiBase } from '~/shared/config';
-import { TODO_ENPOINTS } from '~/shared/config/endpoints';
+import { ApiBase, TODO_ENPOINTS } from '~/shared/config';
 
-
-export class ApiTodo extends ApiBase implements IApiTodo {
-  public fetchTodos(): Promise<Todo[]> {
-    return this.get<Todo[]>(TODO_ENPOINTS.GET_ALL);
+class ApiTodo extends ApiBase implements IApiTodo {
+  public getTodosAsync(): Promise<ITodo[]> {
+    return this.get<ITodo[]>(TODO_ENPOINTS.GET_ALL);
   }
 
-  public fetchTodo(id: number): Promise<Todo> {
-    return this.get<Todo>(`${TODO_ENPOINTS.GET_ALL}/${id}`);
+  public getTodoAsync(id: number): Promise<ITodo> {
+    return this.get<ITodo>(`${TODO_ENPOINTS.GET_ALL}/${id}`);
   }
 
-  public createTodo(todo: Omit<Todo, 'id'>): Promise<Todo> {
-    return this.post<Todo>(TODO_ENPOINTS.GET_ALL, todo);
+  public createTodoAsync(todo: Omit<ITodo, 'id'>): Promise<ITodo> {
+    return this.post<ITodo>(TODO_ENPOINTS.GET_ALL, todo);
   }
 
-  public updateTodo(todo: Omit<Todo, 'id'>, id: number): Promise<Todo> {
-    return this.patch<Todo>(`${TODO_ENPOINTS.GET_ALL}/${id}`, todo);
+  public updateTodoAsync(todo: Omit<ITodo, 'id'>, id: number): Promise<ITodo> {
+    return this.patch<ITodo>(`${TODO_ENPOINTS.GET_ALL}/${id}`, todo);
   }
 
-  public deleteTodo(id: number): Promise<void> {
+  public deleteTodoAsync(id: number): Promise<void> {
     return this.delete<void>(`${TODO_ENPOINTS.GET_ALL}/${id}`);
   }
 }
+
+export const apiTodo = new ApiTodo();

@@ -1,9 +1,9 @@
-import type { Todo } from '~/entities/todo/model/types';
+import type { ITodo } from '~/entities/todo/model';
 
 export interface IApiTodo {
-  fetchTodos(): Promise<Todo[]>;
-  fetchTodo(id: number): Promise<Todo>;
-  createTodo(todo: Omit<Todo, 'id'>): Promise<Todo>;
-  updateTodo(todo: Omit<Todo, 'id'>, id: number): Promise<Todo>;
-  deleteTodo(id: number): Promise<void>;
+  getTodosAsync(): Promise<ITodo[]>;
+  getTodoAsync(id: number): Promise<ITodo>;
+  createTodoAsync(todo: Omit<ITodo, 'id'>): Promise<ITodo>;
+  updateTodoAsync(todo: Omit<ITodo, 'id'>, id: number): Promise<ITodo>;
+  deleteTodoAsync(id: number): Promise<void>;
 }

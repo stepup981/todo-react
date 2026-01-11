@@ -24,7 +24,7 @@ export class ApiBase {
       throw new Error(errorText || `HTTP error ${response.status}`);
     }
 
-    return response.json() as Promise<T>;
+    return response.json();
   }
 
   public get<T>(endpoint: string, options?: RequestOptions): Promise<T> {
