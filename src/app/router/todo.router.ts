@@ -7,7 +7,7 @@ const TodoPageLazy: RouteObject['lazy'] = () =>
     Component,
   }));
 
-export const todoRoutes: RouteObject[] = [
+export const todoRouter: RouteObject[] = [
   {
     path: ROUTES.TODO.path,
     lazy: TodoPageLazy,
