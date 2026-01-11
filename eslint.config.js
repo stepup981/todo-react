@@ -35,14 +35,12 @@ export default defineConfig([
           groups: ['builtin', 'external', 'internal', ['parent', 'sibling', 'index']],
           pathGroups: [
             { pattern: 'react{,/**}', group: 'external', position: 'before' },
-
-            { pattern: '@/app/**', group: 'internal', position: 'before' },
-            { pattern: '@/pages/**', group: 'internal', position: 'before' },
-
-            { pattern: '@/widgets/**', group: 'internal', position: 'after' },
-            { pattern: '@/features/**', group: 'internal', position: 'after' },
-            { pattern: '@/entities/**', group: 'internal', position: 'after' },
-            { pattern: '@/shared/**', group: 'internal', position: 'after' },
+            { pattern: '~/app/**', group: 'internal', position: 'before' },
+            { pattern: '~/pages/**', group: 'internal', position: 'before' },
+            { pattern: '~/widgets/**', group: 'internal', position: 'after' },
+            { pattern: '~/features/**', group: 'internal', position: 'after' },
+            { pattern: '~/entities/**', group: 'internal', position: 'after' },
+            { pattern: '~/shared/**', group: 'internal', position: 'after' },
           ],
           pathGroupsExcludedImportTypes: ['builtin'],
           'newlines-between': 'always',
