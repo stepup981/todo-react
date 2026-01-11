@@ -2,10 +2,10 @@ import { useEffect, useState } from 'react';
 
 import { apiTodo } from '~/entities/todo/api';
 
-import { StoreTodo } from '.';
+import { storeTodo } from '.';
 
 export const useGetTodos = () => {
-  const { setTodos } = StoreTodo();
+  const { setTodos } = storeTodo();
   const [isLoading, setLoading] = useState(false);
 
   const fetchTodos = async () => {

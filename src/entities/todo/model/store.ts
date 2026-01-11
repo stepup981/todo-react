@@ -7,7 +7,7 @@ interface IStoreTodo {
   setTodos: (todos: ITodo[]) => void;
 }
 
-export const StoreTodo = create<IStoreTodo>(set => ({
+export const storeTodo = create<IStoreTodo>(set => ({
   todos: [],
   setTodos: todos => set({ todos }),
 }));
