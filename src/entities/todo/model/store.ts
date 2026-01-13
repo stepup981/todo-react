@@ -1,10 +1,10 @@
 import { create } from 'zustand';
 
-import type { ITodo } from './types';
+import type { Todo } from './types';
 
 interface IStoreTodo {
-  todos: ITodo[];
-  setTodos: (todos: ITodo[]) => void;
+  todos: Todo[];
+  setTodos: (todos: Todo[]) => void;
 }
 
 export const storeTodo = create<IStoreTodo>(set => ({

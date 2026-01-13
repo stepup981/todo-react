@@ -1,7 +1,7 @@
-import { StoreTodo, useGetTodos } from '~/entities/todo/model';
+import { storeTodo, useGetTodos } from '~/entities/todo/model';
 
 const TodoList = () => {
-  const { todos } = StoreTodo();
+  const { todos } = storeTodo();
   const { isLoading } = useGetTodos();
 
   if (isLoading) return <div>Пошла возня</div>;
