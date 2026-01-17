@@ -1,5 +1,7 @@
+import TodoList from '~/widgets/todo-list';
+
 const Home = () => {
-  return <div>домашняя</div>;
+  return <TodoList />;
 };
 
 export default Home;
