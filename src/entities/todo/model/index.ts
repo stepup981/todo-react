@@ -1,2 +1,2 @@
-export * from './store';
+export * from './todo.store';
 export * from './todo.types';
