@@ -1,5 +1,5 @@
 import type { TodoApiContract } from '~/entities/todo/api/todo.interfaces';
-import { type CreateTodo, type Todo, type UpdateTodo } from '~/entities/todo/model';
+import type { CreateTodo, Todo, UpdateTodo } from '~/entities/todo/model';
 
 import { ApiBase, TODO_ENPOINTS } from '~/shared/config';
 
@@ -17,7 +17,7 @@ class TodoApi extends ApiBase implements TodoApiContract {
   }
 
   public updateTodo(todo: UpdateTodo): Promise<Todo> {
-    return this.patch(`${TODO_ENPOINTS.GET_ALL}/${todo.id}`, todo);
+    return this.patch(`${TODO_ENPOINTS.GET_ALL}/${todo}`, todo);
   }
 
   public deleteTodo(id: number): Promise<void> {

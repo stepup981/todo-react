@@ -4,7 +4,5 @@ export type Todo = {
   description: string;
 };
 
-export type CreateTodo = Omit<Todo, 'id'>;
-export type UpdateTodo = CreateTodo & {
-  id: number;
-};
+export type CreateTodo = Omit<Todo, 'id'> & Partial<Pick<Todo, 'description'>>;
+export type UpdateTodo = Pick<Todo, 'id'> & Partial<Omit<Todo, 'id'>>;
