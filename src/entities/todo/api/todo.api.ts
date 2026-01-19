@@ -1,9 +1,9 @@
-import type { IApiTodo } from '~/entities/todo/api/todo.interfaces';
+import type { TodoApiContract } from '~/entities/todo/api/todo.interfaces';
 import { type CreateTodo, type Todo, type UpdateTodo } from '~/entities/todo/model';
 
 import { ApiBase, TODO_ENPOINTS } from '~/shared/config';
 
-class ApiTodo extends ApiBase implements IApiTodo {
+class TodoApi extends ApiBase implements TodoApiContract {
   public fetchTodos(): Promise<Todo[]> {
     return this.get(TODO_ENPOINTS.GET_ALL);
   }
@@ -25,4 +25,4 @@ class ApiTodo extends ApiBase implements IApiTodo {
   }
 }
 
-export const apiTodo = new ApiTodo();
+export const todoApi = new TodoApi();

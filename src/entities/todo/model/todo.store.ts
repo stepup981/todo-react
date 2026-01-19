@@ -1,10 +1,9 @@
 import { create } from 'zustand';
 
-import { apiTodo } from '~/entities/todo/api';
+import { todoApi } from '~/entities/todo/api';
+import type { Todo } from '~/entities/todo/model';
 
-import type { Todo } from './types';
-
-interface StoreTodo {
+interface TodoStore {
   todos: Todo[];
   loading: {
     fetch: boolean;
@@ -23,7 +22,7 @@ interface StoreTodo {
   setTodos: () => Promise<Todo[]>;
 }
 
-export const storeTodo = create<StoreTodo>(set => ({
+export const todoStore = create<TodoStore>(set => ({
   todos: [],
   loading: {
     fetch: false,
@@ -44,7 +43,7 @@ export const storeTodo = create<StoreTodo>(set => ({
     }));
 
     try {
-      const todos = await apiTodo.fetchTodos();
+      const todos = await todoApi.fetchTodos();
       set({ todos });
       return todos;
     } catch (error) {

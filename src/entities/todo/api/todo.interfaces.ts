@@ -1,6 +1,6 @@
 import type { CreateTodo, Todo, UpdateTodo } from '~/entities/todo/model';
 
-export interface IApiTodo {
+export interface TodoApiContract {
   fetchTodos(): Promise<Todo[]>;
   fetchTodo(id: number): Promise<Todo>;
   createTodo(todo: CreateTodo): Promise<Todo>;
