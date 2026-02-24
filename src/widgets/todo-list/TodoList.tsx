@@ -1,9 +1,8 @@
 import { useEffect } from 'react';
 
-import { storeTodo } from '~/entities/todo/model';
-
+import { todoStore } from '~/entities/todo/model';
 const TodoList = () => {
-  const { todos, setTodos, loading, error } = storeTodo();
+  const { todos, setTodos, loading, error } = todoStore();
 
   useEffect(() => {
     setTodos();
