@@ -5,9 +5,6 @@ const { Title, Text } = Typography;
 const Todo = () => {
   return (
     <Card>
-      <div>что-то ради теста ci/cd</div>
-
-      <div>УЛЕТАЮЮЮ НА ГАИТИИИ</div>
       <Title level={3} style={{ marginBottom: 16 }}>
         Отдельный TODO
       </Title>
