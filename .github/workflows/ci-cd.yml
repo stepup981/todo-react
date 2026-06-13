@@ -11,9 +11,9 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
 
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v6
         with:
           node-version: 22
           cache: npm
@@ -23,7 +23,17 @@ jobs:
           HUSKY: 0
 
       - run: npm run lint
+
       - run: npm run build
+        env:
+          VITE_BASE_URL: ${{ secrets.VITE_BASE_URL }}
+
+      - uses: actions/upload-artifact@v4
+        if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+        with:
+          name: dist
+          path: dist/
+          retention-days: 1
 
   deploy:
     needs: check
@@ -31,6 +41,21 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - uses: actions/download-artifact@v4
+        with:
+          name: dist
+          path: dist
+
+      - run: tar -czf dist.tar.gz -C dist .
+
+      - uses: appleboy/scp-action@v1
+        with:
+          host: ${{ secrets.SERVER_HOST }}
+          username: ${{ secrets.SERVER_USER }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          source: dist.tar.gz
+          target: ${{ secrets.DEPLOY_PATH }}
+
       - uses: appleboy/ssh-action@v1
         with:
           host: ${{ secrets.SERVER_HOST }}
@@ -39,5 +64,8 @@ jobs:
           script: |
             cd ${{ secrets.DEPLOY_PATH }}
             git pull origin main
-            docker compose up -d --build
-            docker image prune -f
+            rm -rf dist
+            mkdir dist
+            tar -xzf dist.tar.gz -C dist
+            rm dist.tar.gz
+            docker compose up -d
