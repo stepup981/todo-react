@@ -64,8 +64,10 @@ jobs:
           script: |
             cd ${{ secrets.DEPLOY_PATH }}
             git pull origin main
+            docker compose down
             rm -rf dist
             mkdir dist
             tar -xzf dist.tar.gz -C dist
             rm dist.tar.gz
+            chmod -R a+rX dist
             docker compose up -d
