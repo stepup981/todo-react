@@ -5,6 +5,7 @@ const { Title, Text } = Typography;
 const Todo = () => {
   return (
     <Card>
+      <div>КАТЯ КУРА</div>
       <Title level={3} style={{ marginBottom: 16 }}>
         Отдельный TODO
       </Title>
