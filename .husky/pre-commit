@@ -11,6 +11,15 @@ git add .
 echo -e "${BLUE}🔍 Running linter...${NC}"
 npm run lint:fix
 
+echo -e "${BLUE}🔍 Running type checker...${NC}"
+npm run type-check
+
+if [ $? -ne 0 ]; then
+  echo -e "${RED}❌ Type errors detected. Commit aborted.${NC}"
+  exit 1
+fi
+git add .
+
 if [ $? -ne 0 ]; then
   echo -e "${YELLOW}⚠️  Lint errors detected. Trying again...${NC}"
   npm run lint:fix

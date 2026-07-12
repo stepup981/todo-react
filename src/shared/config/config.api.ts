@@ -6,7 +6,11 @@ interface RequestOptions extends Omit<RequestInit, 'method' | 'body'> {
 }
 
 export class ApiBase {
-  private async request<T>(endpoint: string, method: HttpMethod, options: RequestOptions = {}): Promise<T> {
+  private async request<T>(
+    endpoint: string,
+    method: HttpMethod,
+    options: RequestOptions = {},
+  ): Promise<T> {
     const { body, ...restOptions } = options;
     const response = await fetch(`${ENV.BASE_URL}${endpoint}`, {
       method,

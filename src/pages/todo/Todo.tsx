@@ -1,16 +1,10 @@
-import { Card, Typography } from 'antd';
-
-const { Title, Text } = Typography;
-
 const Todo = () => {
   return (
-    <Card>
+    <section className="rounded-xl border bg-card p-6 text-card-foreground shadow-sm">
       <div>а что делать, если ты справился или нет?</div>
-      <Title level={3} style={{ marginBottom: 16 }}>
-        Отдельный TODO
-      </Title>
-      <Text type="secondary">Здесь позже можно сделать детальную страницу задачи.</Text>
-    </Card>
+      <h3 className="mb-4 text-xl font-semibold">Отдельный TODO</h3>
+      <p className="text-muted-foreground">Здесь позже можно сделать детальную страницу задачи.</p>
+    </section>
   );
 };
 

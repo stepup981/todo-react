@@ -1,11 +1,6 @@
 import { useEffect } from 'react';
 
-import { Alert, Card, List, Spin, Typography } from 'antd';
-
-import { todoStore, type Todo } from '~/entities/todo/model';
-
-const { Title, Text } = Typography;
-const { Item } = List;
+import { todoStore } from '~/entities/todo/model';
 
 const TodoList = () => {
   const { todos, setTodos, loading, error } = todoStore();
@@ -15,32 +10,27 @@ const TodoList = () => {
   }, [setTodos]);
 
   if (loading.fetch) {
-    return <Spin size="large" style={{ display: 'flex', justifyContent: 'center' }} />;
+    return <div>Loading...</div>;
   }
 
   if (error.fetch) {
-    return <Alert type="error" message={error.fetch} />;
+    return <div>{error.fetch}</div>;
   }
 
   return (
-    <Card>
-      <Title level={3} style={{ marginBottom: 16 }}>
-        Список задач
-      </Title>
+    <div>
+      <h3>Список задач</h3>
 
       {!todos.length ? (
-        <Text type="secondary">Пока нет задач.</Text>
+        <div>Пока нет задач.</div>
       ) : (
-        <List<Todo>
-          dataSource={todos}
-          renderItem={(todo: Todo) => (
-            <Item>
-              <Item.Meta title={todo.name} description={todo.description} />
-            </Item>
-          )}
-        />
+        <ul>
+          {todos.map((todo) => (
+            <li key={todo.id}>{todo.name}</li>
+          ))}
+        </ul>
       )}
-    </Card>
+    </div>
   );
 };
 

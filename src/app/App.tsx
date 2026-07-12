@@ -1,21 +1,18 @@
-import { Layout } from 'antd';
 import { Outlet } from 'react-router-dom';
+import '~/app/styles/index.css';
 
 import Header from '~/widgets/header';
+import { ThemeProvider } from '~/widgets/theme';
 
 import PageContainer from '~/shared/ui/PageContainer';
 
-const { Content } = Layout;
-
 export default function App() {
   return (
-    <Layout style={{ minHeight: '100vh' }}>
+    <ThemeProvider>
       <Header />
-      <Content>
-        <PageContainer>
-          <Outlet />
-        </PageContainer>
-      </Content>
-    </Layout>
+      <PageContainer>
+        <Outlet />
+      </PageContainer>
+    </ThemeProvider>
   );
 }

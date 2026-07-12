@@ -2,6 +2,7 @@ import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 import path from 'path';
 import { visualizer } from 'rollup-plugin-visualizer';
+import tailwindcss from '@tailwindcss/vite';
 
 const atAlias = path.resolve(__dirname, './src');
 const isAnalyze = process.env.ANALYZE === 'true';
@@ -10,6 +11,7 @@ const isAnalyze = process.env.ANALYZE === 'true';
 export default defineConfig({
   plugins: [
     react(),
+    tailwindcss(),
     isAnalyze &&
       visualizer({
         filename: './bundle-visualizer.html',

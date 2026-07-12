@@ -4,7 +4,7 @@ import { todoApi } from '~/entities/todo/api';
 
 import type { TodoStore } from './todo.store.types';
 
-export const todoStore = create<TodoStore>(set => ({
+export const todoStore = create<TodoStore>((set) => ({
   todos: [],
   loading: {
     fetch: false,
@@ -19,7 +19,7 @@ export const todoStore = create<TodoStore>(set => ({
     remove: null,
   },
   async setTodos() {
-    set(state => ({
+    set((state) => ({
       loading: { ...state.loading, fetch: true },
       error: { ...state.error, fetch: null },
     }));
@@ -29,12 +29,15 @@ export const todoStore = create<TodoStore>(set => ({
       set({ todos });
       return todos;
     } catch (error) {
-      set(state => ({
-        error: { ...state.error, fetch: error instanceof Error ? error.message : 'Ошибка загрузки' },
+      set((state) => ({
+        error: {
+          ...state.error,
+          fetch: error instanceof Error ? error.message : 'Ошибка загрузки',
+        },
       }));
       return [];
     } finally {
-      set(state => ({ loading: { ...state.loading, fetch: false } }));
+      set((state) => ({ loading: { ...state.loading, fetch: false } }));
     }
   },
 }));
