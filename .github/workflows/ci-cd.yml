@@ -2,9 +2,9 @@ name: CI/CD
 
 on:
   push:
-    branches: [ya-golybou]
+    branches: [main, ya-golybou]
   pull_request:
-    branches: [ya-golybou]
+    branches: [main, ya-golybou]
 
 jobs:
   check:
@@ -29,7 +29,7 @@ jobs:
           VITE_BASE_URL: ${{ secrets.VITE_BASE_URL }}
 
       - uses: actions/upload-artifact@v4
-        if: github.ref == 'refs/heads/ya-golybou' && github.event_name == 'push'
+        if: github.ref == 'refs/heads/main' && github.event_name == 'push'
         with:
           name: dist
           path: dist/
@@ -37,7 +37,7 @@ jobs:
 
   deploy:
     needs: check
-    if: github.ref == 'refs/heads/ya-golybou' && github.event_name == 'push'
+    if: github.ref == 'refs/heads/main' && github.event_name == 'push'
     runs-on: ubuntu-latest
 
     steps:
