@@ -1,28 +1,45 @@
+import { RiSunFill, RiMoonFill } from '@remixicon/react';
 import { NavLink } from 'react-router-dom';
 
 import { THEME, useTheme } from '~/widgets/theme';
 
 import { ROUTES } from '~/shared/config';
 import { Button } from '~/shared/ui/button';
+import {
+  NavigationMenu,
+  NavigationMenuItem,
+  NavigationMenuLink,
+  NavigationMenuList,
+} from '~/shared/ui/navigation-menu';
 
 const Header = () => {
   const { theme, setTheme } = useTheme();
-  const items = Object.values(ROUTES).map((route) => ({
+
+  const links = Object.values(ROUTES).map((route) => ({
     key: route.path,
-    label: (
-      <NavLink key={route.path} to={route.path}>
-        {route.label}
-      </NavLink>
-    ),
+    render: () => <NavLink to={route.path}>{route.label}</NavLink>,
   }));
 
   return (
-    <>
-      <Button onClick={() => setTheme(theme === THEME.DARK ? THEME.LIGHT : THEME.DARK)}>
-        СВИТЧ ТЕМУ
+    <header className="flex items-center justify-between p-4">
+      <NavigationMenu>
+        <NavigationMenuList className="flex items-center gap-2">
+          {links.map((link) => (
+            <NavigationMenuItem>
+              <NavigationMenuLink render={link.render} />
+            </NavigationMenuItem>
+          ))}
+        </NavigationMenuList>
+      </NavigationMenu>
+
+      <Button
+        variant={'outline'}
+        size={'icon'}
+        onClick={() => setTheme(theme === THEME.DARK ? THEME.LIGHT : THEME.DARK)}
+      >
+        {theme === THEME.DARK ? <RiSunFill /> : <RiMoonFill />}
       </Button>
-      {items.map((i) => i.label)}
-    </>
+    </header>
   );
 };
 
