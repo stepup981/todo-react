@@ -58,7 +58,6 @@ jobs:
           target: ${{ secrets.DEPLOY_PATH }}
           script: |
             cd ${{ secrets.DEPLOY_PATH }}
-            git pull origin main
             docker compose down
             rm -rf dist
             mkdir dist
