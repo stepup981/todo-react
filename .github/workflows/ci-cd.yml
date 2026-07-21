@@ -2,9 +2,9 @@ name: CI/CD
 
 on:
   push:
-    branches: [main, ya-golybou]
+    branches: [main]
   pull_request:
-    branches: [main, ya-golybou]
+    branches: [main]
 
 jobs:
   check:
