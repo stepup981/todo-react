@@ -1,6 +1,6 @@
 import { create } from 'zustand';
 
-import { todoApi } from '~/entities/todo/api';
+import { getTodos } from '~/shared/api/generated/todos';
 
 import type { TodoStore } from './todo.store.types';
 
@@ -25,7 +25,7 @@ export const todoStore = create<TodoStore>((set) => ({
     }));
 
     try {
-      const todos = await todoApi.fetchTodos();
+      const todos = await getTodos();
       set({ todos });
       return todos;
     } catch (error) {
