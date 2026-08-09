@@ -1,7 +1,8 @@
-import type { TodoResponseDto } from '~/shared/api/generated/todoAPI.schemas';
+import type { CreateTodoDto } from '~/shared/api/generated/todoAPI.schemas';
+import type { Todo } from './todo.types';
 
 export interface TodoStore {
-  todos: TodoResponseDto[];
+  todos: Todo[];
   loading: {
     fetch: boolean;
     create: boolean;
@@ -16,5 +17,6 @@ export interface TodoStore {
     remove: string | null;
   };
 
-  setTodos: () => Promise<TodoResponseDto[]>;
+  setTodos: () => Promise<Todo[]>;
+  createTodo: (todo: CreateTodoDto) => Promise<Todo | null>;
 }

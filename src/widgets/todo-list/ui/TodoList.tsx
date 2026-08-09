@@ -1,6 +1,9 @@
 import { useEffect } from 'react';
 
 import { todoStore } from '~/entities/todo/model';
+import { Spinner } from '~/shared/ui/spinner';
+
+import TodoItem from './TodoItem';
 
 const TodoList = () => {
   const { todos, setTodos, loading, error } = todoStore();
@@ -10,7 +13,7 @@ const TodoList = () => {
   }, [setTodos]);
 
   if (loading.fetch) {
-    return <div>Loading...</div>;
+    return <Spinner className="size-8" />;
   }
 
   if (error.fetch) {
@@ -19,14 +22,12 @@ const TodoList = () => {
 
   return (
     <div>
-      <h3>Список задач</h3>
-
       {!todos.length ? (
-        <div>Пока нет задач.</div>
+        <p className="text-sm text-muted-foreground">Пока нет задач.</p>
       ) : (
-        <ul>
+        <ul className="grid gap-4">
           {todos.map((todo) => (
-            <li key={todo.id}>{todo.name}</li>
+            <TodoItem key={todo.id} {...todo} />
           ))}
         </ul>
       )}

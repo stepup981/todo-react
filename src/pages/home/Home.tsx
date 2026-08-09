@@ -1,9 +1,10 @@
 import TodoList from '~/widgets/todo-list';
+import { CreateTodoForm } from '~/features/action-todo/ui/CreateTodoForm';
 
 const Home = () => {
   return (
     <>
-      <div>МЭД МИТЯ ВОЛШЕБНИК ИЛИ НЕТ?</div>
+      <CreateTodoForm />
       <TodoList />
     </>
   );

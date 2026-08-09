@@ -33,8 +33,8 @@ const Header = () => {
       </NavigationMenu>
 
       <Button
-        variant={'outline'}
-        size={'icon'}
+        variant="outline"
+        size="icon"
         onClick={() => setTheme(theme === THEME.DARK ? THEME.LIGHT : THEME.DARK)}
       >
         {theme === THEME.DARK ? <RiSunFill /> : <RiMoonFill />}

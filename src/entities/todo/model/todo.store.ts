@@ -1,8 +1,10 @@
 import { create } from 'zustand';
 
-import { getTodos } from '~/shared/api/generated/todos';
+import { getTodos, createTodo } from '~/shared/api/generated/todos';
 
 import type { TodoStore } from './todo.store.types';
+import { todoMapper, todosMapper } from './todo.mapper';
+import type { CreateTodoDto } from '~/shared/api/generated/todoAPI.schemas';
 
 export const todoStore = create<TodoStore>((set) => ({
   todos: [],
@@ -26,8 +28,9 @@ export const todoStore = create<TodoStore>((set) => ({
 
     try {
       const todos = await getTodos();
-      set({ todos });
-      return todos;
+      const mappedTodos = todosMapper(todos);
+      set({ todos: mappedTodos });
+      return mappedTodos;
     } catch (error) {
       set((state) => ({
         error: {
@@ -38,6 +41,29 @@ export const todoStore = create<TodoStore>((set) => ({
       return [];
     } finally {
       set((state) => ({ loading: { ...state.loading, fetch: false } }));
+    }
+  },
+  async createTodo(todo: CreateTodoDto) {
+    set((state) => ({
+      loading: { ...state.loading, create: true },
+      error: { ...state.error, create: null },
+    }));
+
+    try {
+      const newTodo = await createTodo(todo);
+      const mappedTodo = todoMapper(newTodo);
+      set((state) => ({ todos: [...state.todos, mappedTodo] }));
+      return mappedTodo;
+    } catch (error) {
+      set((state) => ({
+        error: {
+          ...state.error,
+          create: error instanceof Error ? error.message : 'Ошибка создания',
+        },
+      }));
+      return null;
+    } finally {
+      set((state) => ({ loading: { ...state.loading, create: false } }));
     }
   },
 }));
